@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ràdio Foix - Institut J.V. Foix Rubí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --accent: #e63946;
+            --accent-hover: #d62839;
+            --border: #e5e7eb;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0f0f0f;
+                --bg-secondary: #1a1a1a;
+                --text-primary: #ffffff;
+                --text-secondary: #9ca3af;
+                --border: #2a2a2a;
+                --shadow: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        body {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 2rem 4rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Player */
+        .player-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .player {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .player h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .player p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* Programs */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .program-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px var(--shadow);
+        }
+
+        .program-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .program-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .program-time {
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .program-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-logo img {
+            height: 32px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem 3rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <img src="resources/main_logo.png" alt="Ràdio Foix">
+                <span class="logo-text">Ràdio Foix</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#programes">Programes</a></li>
+                    <li><a href="#equip">Equip</a></li>
+                    <li><a href="#sobre">Sobre nosaltres</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div style="margin-bottom: 1.5rem;">
+                <span class="status-badge">
+                    <span class="status-dot"></span>
+                    Proximament en directe
+                </span>
+            </div>
+            <h1>La veu de l'Institut J.V. Foix</h1>
+            <p>La ràdio feta per estudiants per a estudiants. Música, cultura, entrevistes i molt més des de Rubí.</p>
+        </div>
+    </section>
+
+    <section class="player-section">
+        <div class="player">
+            <h2>Aviat en directe</h2>
+            <p>Estem preparant contingut increïble. Torneu aviat.</p>
+        </div>
+    </section>
+
+    <section id="programes" class="section">
+        <h2 class="section-title">Programes</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="program-header">
+                    <h3>Matinal Foix</h3>
+                    <span class="program-time">Dl-Dv 8:00</span>
+                </div>
+                <p>Comença el dia amb energia. Música, notícies de l'institut i bones vibracions.</p>
+            </div>
+
+            <div class="program-card">
+                <div class="program-header">
+                    <h3>Entrevistes</h3>
+                    <span class="program-time">Dm 14:00</span>
+                </div>
+                <p>Converses amb professors, alumnes i personalitats que visiten el nostre centre.</p>
+            </div>
+
+            <div class="program-card">
+                <div class="program-header">
+                    <h3>Descobrint Talents</h3>
+                    <span class="program-time">Dj 13:00</span>
+                </div>
+                <p>El teu espai per mostrar els talents musicals i artístics de l'institut.</p>
+            </div>
+
+            <div class="program-card">
+                <div class="program-header">
+                    <h3>Cultura i Més</h3>
+                    <span class="program-time">Dc 12:00</span>
+                </div>
+                <p>Recomanacions de llibres, pel·lícules, sèries i tot allò cultural que no et pots perdre.</p>
+            </div>
+
+            <div class="program-card">
+                <div class="program-header">
+                    <h3>Esports al Dia</h3>
+                    <span class="program-time">Dv 14:00</span>
+                </div>
+                <p>Totes les notícies esportives de l'institut i el món. Resultats i entrevistes.</p>
+            </div>
+
+            <div class="program-card">
+                <div class="program-header">
+                    <h3>La Llista del Foix</h3>
+                    <span class="program-time">Dv 15:00</span>
+                </div>
+                <p>El rànquing musical de la setmana amb les cançons més escoltades.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="equip" class="section">
+        <h2 class="section-title">Equip</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <h3>Direcció</h3>
+                <p>Coordinació i planificació dels continguts de la ràdio.</p>
+            </div>
+
+            <div class="program-card">
+                <h3>Tècnica</h3>
+                <p>Gestió de l'equipament i qualitat de l'àudio.</p>
+            </div>
+
+            <div class="program-card">
+                <h3>Locutors</h3>
+                <p>Les veus que donen vida als nostres programes.</p>
+            </div>
+
+            <div class="program-card">
+                <h3>Producció</h3>
+                <p>Creació i edició dels continguts radiofònics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="section">
+        <h2 class="section-title">Sobre Ràdio Foix</h2>
+        <div style="max-width: 800px;">
+            <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                Ràdio Foix és un projecte educatiu de l'Institut J.V. Foix de Rubí que ofereix als estudiants l'oportunitat de descobrir el món de la comunicació radiofònica.
+            </p>
+            <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8;">
+                A través dels diferents programes, els alumnes desenvolupen habilitats comunicatives, treballen en equip i aprenen a produir continguts de qualitat per a la comunitat educativa.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="resources/main_logo.png" alt="Ràdio Foix">
+                <span class="footer-text">Institut J.V. Foix, Rubí</span>
+            </div>
+            <p class="footer-text">© 2026 Ràdio Foix. Tots els drets reservats.</p>
+        </div>
+    </footer>
+</body>
+</html>
